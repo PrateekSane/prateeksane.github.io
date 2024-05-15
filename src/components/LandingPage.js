@@ -24,7 +24,7 @@ const LandingPage = () => {
                 </section>
                 <section>
                     <h2>What I'm Worst at</h2>
-                    <p>Nothing. I am flawless.</p>
+                    <p>Many things. Also spelling</p>
                 </section>
             </div>
             <div className='sidebar'>
