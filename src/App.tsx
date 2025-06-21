@@ -13,13 +13,13 @@ import AboutSection from "./components/AboutSection";
 import BernieSection from "./components/BernieSection";
 import CallBotSection from "./components/CallBotSection";
 import MemeGenSection from "./components/MemeGenSection";
-import NpcsSection from "./components/NpcSection";
+import NpcSection from "./components/NpcSection";
 import WaylessSection from "./components/Wayless";
 
 // Define your sections in one place with paths
 const SECTIONS = [
   { key: "about", label: "About", path: "/about", Component: AboutSection },
-  { key: "npcs", label: "NPCs", path: "/npcs", Component: NpcsSection },
+  { key: "npcs", label: "NPCs", path: "/npcs", Component: NpcSection },
   {
     key: "callbot",
     label: "Call Bot",
@@ -44,30 +44,30 @@ const SECTIONS = [
 type SectionKey = (typeof SECTIONS)[number]["key"];
 type SectionItem = (typeof SECTIONS)[number];
 
-const Sidebar: React.FC<{ onLinkClick?: () => void }> = ({ onLinkClick }) => (
-  <aside className="w-64 min-h-screen bg-white border-r border-gray-200 fixed lg:relative hidden lg:block">
-    <div className="p-6">
-      <h1 className="text-xl font-medium text-gray-900 mb-8">Prateek Sane</h1>
-      <nav className="space-y-2">
-        {SECTIONS.map(({ key, label, path }) => (
-          <NavLink
-            key={key}
-            to={path}
-            onClick={onLinkClick}
-            className={({ isActive }) =>
-              `w-full block text-left px-3 py-2 rounded transition-colors ${
-                isActive
-                  ? "bg-gray-100 text-gray-900"
-                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
-              }`
-            }
-          >
-            {label}
-          </NavLink>
-        ))}
-      </nav>
-    </div>
-  </aside>
+const SidebarContent: React.FC<{ onLinkClick?: () => void }> = ({
+  onLinkClick,
+}) => (
+  <div className="p-6">
+    <h1 className="text-xl font-medium text-gray-900 mb-8">Prateek Sane</h1>
+    <nav className="space-y-2">
+      {SECTIONS.map(({ key, label, path }) => (
+        <NavLink
+          key={key}
+          to={path}
+          onClick={onLinkClick}
+          className={({ isActive }) =>
+            `w-full block text-left px-3 py-2 rounded transition-colors ${
+              isActive
+                ? "bg-gray-100 text-gray-900"
+                : "text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+            }`
+          }
+        >
+          {label}
+        </NavLink>
+      ))}
+    </nav>
+  </div>
 );
 
 function AppContent() {
@@ -77,7 +77,9 @@ function AppContent() {
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
         {/* Desktop Sidebar */}
-        <Sidebar />
+        <aside className="w-64 min-h-screen bg-white border-r border-gray-200 fixed lg:relative hidden lg:block">
+          <SidebarContent />
+        </aside>
 
         {/* Mobile Sidebar */}
         <div className="lg:hidden">
@@ -94,7 +96,7 @@ function AppContent() {
                 className="fixed inset-0 bg-black bg-opacity-25"
                 onClick={() => setSidebarOpen(false)}
               />
-              <div className="relative w-64 bg-white border-r border-gray-200 shadow-lg">
+              <aside className="relative w-64 bg-white border-r border-gray-200 shadow-lg z-50">
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-8">
                     <h1 className="text-xl font-medium text-gray-900">
@@ -107,9 +109,9 @@ function AppContent() {
                       <X size={20} />
                     </button>
                   </div>
-                  <Sidebar onLinkClick={() => setSidebarOpen(false)} />
+                  <SidebarContent onLinkClick={() => setSidebarOpen(false)} />
                 </div>
-              </div>
+              </aside>
             </div>
           )}
         </div>
