@@ -10,6 +10,13 @@ const experiences = [
       "Building a PB-scale performant, distributed caching solution for ML training workflows from the ground up in C++",
   },
   {
+    title: "Software Engineer",
+    company: "ExcavAIte",
+    time: "2024",
+    description:
+      "Using GenAI to streamline the Intellectual Property (patent) development process.",
+  },
+  {
     title: "Software Engineer Intern",
     company: "LinkedIn",
     time: "Summer 2023",
